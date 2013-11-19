@@ -1,0 +1,85 @@
+" vim: ft=vim
+
+" load arpeggio, so we have access to chords for mapping
+call arpeggio#load()
+
+" ' is easier to get to than `
+nnoremap ' `
+nnoremap ` '
+
+" load arpeggio, so we have access to chords for mapping
+call arpeggio#load()
+
+" , is a way easier leader than \
+let maplocalleader = ",,"
+let mapleader = ","
+
+" have <F8> toggle spelling mode
+nmap <F8> :setlocal invspell spelllang=en_us<CR>
+
+" have <F4> toggle paste
+set pastetoggle=<F4>
+
+" ctrl-p
+nnoremap <leader>f <esc>:CtrlPMixed<CR>
+call arpeggio#map("n", "", 0, "ne", "<esc>:CtrlPMixed<cr>")
+call arpeggio#map("n", "", 0, "jk", "<esc>:CtrlPMixed<cr>")
+
+" map <leader>a to jump to the alternate file
+nnoremap <leader>a :call altr#forward()<cr>
+call arpeggio#map("n", "", 0, "eu", ":call altr#forward()<cr>")
+
+" map F5 to bring up the undo window
+nnoremap <F5> :GundoToggle<CR>
+
+" map zxc to reformat the current paragraph
+call arpeggio#map("n", "", 0, "zxc", ":normal gqip<cr>")
+
+" map <leader>s to popup spelling suggestions
+map <leader>s z=
+
+" map <leader>= and <leader>- to perform the most common alignments
+nnoremap <leader>= :Tabularize /=<cr>
+nnoremap <leader>- :Tabularize /-><cr>
+nnoremap <leader>; :Tabularize /:<cr>
+vnoremap <leader>= :Tabularize /=<cr>
+vnoremap <leader>- :Tabularize /-><cr>
+vnoremap <leader>; :Tabularize /:<cr>
+
+" map <leader>(p|n) to move forward and back in the jump list
+nnoremap <leader>p <C-o>
+nnoremap <leader>n <C-n>
+
+" map < and > to repeated shifting in visual mode
+vnoremap < <gv
+vnoremap > >gv
+vnoremap <Left> <gv
+vnoremap <Right> >gv
+
+" map _ and - to beginning and end of the line
+nnoremap _ ^
+nnoremap - $
+
+" map Z to ZZ to make saving and quiting that much faster
+nnoremap Z ZZ
+
+" delete the current word in insert mode
+inoremap <C-w> <esc>diwi
+
+" map arrows to various window and tab movements
+map    <C-N>       :tabnext<cr>
+map    <C-P>       :tabprev<cr>
+map    <S-Right>   :tabnext<cr>
+map    <S-Left>    :tabprev<cr>
+imap   <S-Right>   <esc>:tabnext<cr>
+imap   <S-Left>    <esc>:tabprev<cr>
+map    <S-Up>      <esc><C-w><Up>
+map    <S-Down>    <esc><C-w><Down>
+imap   <S-Up>      <esc><C-w><Up>
+imap   <S-Down>    <esc><C-w><Down>
+
+" easy motion with just leader
+let g:EasyMotion_leader_key = '<Leader>'
+
+" use vim-ocamlspot for type spotting
+" nnoremap <localleader>t :call OCamlType()<CR>

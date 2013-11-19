@@ -1,0 +1,40 @@
+" use h for insert
+nno h i
+
+" Qwerty | Colemak
+"   i    |    u
+" j k l  |  n e i
+
+" Natural window movement
+nnoremap <C-N> <C-W><C-H>
+nnoremap <C-E> <C-W><C-J>
+nnoremap <C-U> <C-W><C-K>
+nnoremap <C-I> <C-W><C-L>
+
+nno j e
+vno j e
+nno J E
+vno J E
+
+nno l u
+nno L U
+
+nno k n
+nno K N
+
+nno i l
+vno i l
+
+nno e j
+vno e j
+
+nno n h
+vno n h
+
+nnoremap u k
+vno u k
+
+ino uu <esc>
+
+set mouse=a
+

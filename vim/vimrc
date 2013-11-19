@@ -1,0 +1,17 @@
+set nocompatible
+
+execute pathogen#infect()
+" source ~/.vim/bundles
+source ~/.vim/general
+source ~/.vim/colors
+source ~/.vim/default_remaps
+source ~/.vim/bold_remaps
+source ~/.vim/plugin_options
+source ~/.vim/auto_commands
+source ~/.vim/package_settings
+" source ~/.vim/unicode_chars.vim
+
+" add overrides to the files above to the overrides file
+if filereadable(glob("~/.vim/overrides"))
+  source ~/.vim/overrides
+endif

@@ -1,0 +1,83 @@
+set history=700
+set autoread
+set number
+set backspace=eol,start,indent
+set lazyredraw
+
+syntax enable
+filetype plugin indent on
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+
+autocmd FileType ocaml setlocal shiftwidth=2 tabstop=2
+
+" set smartindent
+" set autoindent
+
+set t_Co=256
+
+colorscheme molokai
+
+" Turning off error sounds
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+" Associate extensions with filetypes
+au BufNewFile,BufRead *.md setlocal ft=markdown
+au BufNewFile,BufRead *.coq setlocal ft=coq
+
+nnoremap <C-N> <C-W><C-H>
+nnoremap <C-E> <C-W><C-J>
+nnoremap <C-U> <C-W><C-K>
+nnoremap <C-I> <C-W><C-L>
+
+nno l u
+
+nnoremap u k|xnoremap u k|onoremap u k|
+
+nno k n
+
+nnoremap n h|xnoremap n h|onoremap n h|
+nnoremap e j|xnoremap e j|onoremap e j|
+nnoremap i l|xnoremap i l|onoremap i l|
+" Key remaps
+nno h i
+
+ino uu <esc>
+cno uu <c-c>
+vno v <esc>
+
+set mouse=a
+set ruler
+set wrap
+set guifont=Menlo:h12
+
+function! Smart_TabComplete()
+  let line = getline('.')                         " current line
+
+  let substr = strpart(line, -1, col('.')+1)      " from the start of the current
+                                                  " line to one character right
+                                                  " of the cursor
+  let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
+  if (strlen(substr)==0)                          " nothing to match on empty string
+    return "\<tab>"
+  endif
+  let has_period = match(substr, '\.') != -1      " position of period, if any
+  let has_slash = match(substr, '\/') != -1       " position of slash, if any
+  if (!has_period && !has_slash)
+    return "\<C-X>\<C-P>"                         " existing text matching
+  elseif ( has_slash )
+    return "\<C-X>\<C-F>"                         " file matching
+  else
+    return "\<C-X>\<C-O>"                         " plugin matching
+  endif
+endfunction
+
+inoremap <tab> <c-r>=Smart_TabComplete()<CR>
+
+execute pathogen#infect()
+

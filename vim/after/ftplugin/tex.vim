@@ -1,0 +1,2 @@
+setl updatetime=1
+
